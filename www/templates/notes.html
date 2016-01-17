@@ -1,0 +1,63 @@
+<ion-view title="Notes" ng-controller="NoteController as note_ctrl">
+ 	<header class="bar bar-header bar-stable">
+ 		<h1 class="title">Notes</h1>
+ 		<button class="button button-clear" ng-click="newNote()">New Note</button>
+ 	</header>
+ 	
+  <ion-content class="has-header padding">
+	<div class="card" ng-repeat="note in note_ctrl.notes">
+	  <div class="item item-text-wrap" on-double-tap="viewNote(note)" on-drag-right="deleteNote(note)">
+	    <strong>{{note.title}}</strong>
+	    <div class="description">{{note_ctrl.truncate(note.text)}}</div>
+	  </div>
+	</div>
+	<div class="card" ng-if="note_ctrl.notes.length === 0">
+		<div class="item item-text-wrap">
+			No notes yet
+		</div>
+	</div>
+  </ion-content>
+
+  <script id="new-note.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar class="bar-stable">
+      <button class="button button-clear icon ion-camera" ng-click="takePicture()"></button>	
+      <h1 class="title">New Note</h1>
+      <button class="button button-clear" ng-click="closeModal('new_note')">Close</button>
+    </ion-header-bar>
+    <ion-content>
+      
+	  <div class="list">
+	    <label class="item item-input item-stacked-label">
+	      <span class="input-label">Title</span>
+	      <input type="text" ng-model="note.title">
+	    </label>
+	    <label class="item item-input item-stacked-label">
+	      <span class="input-label">Note</span>
+	      <textarea ng-model="note.text"></textarea>
+	    </label>
+	  </div>
+
+	  <div class="padding" ng-if="note.photo">
+	  	<button class="button button-clear icon ion-image" ng-click="viewImage(note.photo)"></button>
+	  </div>
+
+	  <div class="padding">
+	    <button class="button button-positive button-block" ng-click="saveNote()">
+	      Save
+	    </button>
+	  </div>
+
+    </ion-content>
+  </ion-modal-view>
+  </script>
+
+  <script id="image-modal.html" type="text/ng-template">
+	<div class="modal image-modal transparent" 
+	   ng-click="closeModal('image')">
+		<img ng-src="{{note.photo}}" class="fullscreen-image" />
+	</div>
+  </script>
+
+
+</ion-view>
