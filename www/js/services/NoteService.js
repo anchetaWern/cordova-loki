@@ -12,7 +12,7 @@
             var adapter = new LokiCordovaFSAdapter({"prefix": "loki"});      
             db = new Loki('notes_db', {
                 autosave: true,
-                autosaveInterval: 1000,
+                autosaveInterval: 5000,
                 adapter: adapter
             });
         }
