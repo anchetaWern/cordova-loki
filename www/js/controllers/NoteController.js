@@ -1,8 +1,8 @@
 (function(){
 	angular.module('starter')
-	.controller('NoteController', ['$scope', '$state', '$ionicModal', '$ionicPlatform', 'CameraService', 'NoteService', NoteController]);
+	.controller('NoteController', ['$scope', '$ionicModal', '$ionicPlatform', 'CameraService', 'NoteService', NoteController]);
 	
-	function NoteController($scope, $state, $ionicModal, $ionicPlatform, CameraService, NoteService){
+	function NoteController($scope, $ionicModal, $ionicPlatform, CameraService, NoteService){
 
 		var me = this;
 
