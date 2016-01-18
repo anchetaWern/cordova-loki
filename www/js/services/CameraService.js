@@ -9,31 +9,29 @@
     
     me.options = {
       quality: 80,
-      //targetWidth: 300,
-      //targetHeight: 300,
       correctOrientation: true
     };
     
     function getPicture(){
 
-        var q = $q.defer();
+      var q = $q.defer();
 
-        me.options.encodingType = Camera.EncodingType.JPEG;
-        me.options.sourceType = Camera.PictureSourceType.CAMERA;
-        
+      me.options.encodingType = Camera.EncodingType.JPEG;
+      me.options.sourceType = Camera.PictureSourceType.CAMERA;
+      
 
-        navigator.camera.getPicture(
-          function(result){
-            q.resolve(result);
-          }, 
-          function(err){
-            q.reject(err);
-          }, 
-          me.options
-        );
+      navigator.camera.getPicture(
+        function(result){
+          q.resolve(result);
+        }, 
+        function(err){
+          q.reject(err);
+        }, 
+        me.options
+      );
 
-        return q.promise;
-      }
+      return q.promise;
+    }
 
     return {
       getPicture: getPicture
